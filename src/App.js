@@ -12,7 +12,7 @@ function App() {
   const [strGlass, setStrGlass] = useState('');
   const [strInstructions, setStrInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  const [measures, setMeasures] = useState([]);
+  //const [measures, setMeasures] = useState([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -25,9 +25,11 @@ function App() {
       setStrInstructions(drink.strInstructions);
 
       const ingredientsArr = [];
-      for (let i = 1; i < 16; i++) {
-        ingredientsArr.push(drink['strIngredient' + i, 'strMeasure' + i]);
-      }
+        for (let i = 1; i < 16; i++) {
+          if (drink['strIngredient' + i]) {
+            ingredientsArr.push(drink['strIngredient' + i] + drink['strMeasure' + i]);
+          }
+        }
 
       setIngredients(ingredientsArr);
 
@@ -60,7 +62,9 @@ function App() {
       
         const ingredientsArr = [];
         for (let i = 1; i < 16; i++) {
-          ingredientsArr.push(drink['strIngredient' + i,'strMeasure' + i ]);
+          if (drink['strIngredient' + i]) {
+            ingredientsArr.push(drink['strIngredient' + i] + drink['strMeasure' + i]);
+          }
         }
       
         setIngredients(ingredientsArr);
